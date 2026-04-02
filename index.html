@@ -9,86 +9,122 @@
       content="Ojaq builds AI agents as products. Each Ojaq agent is defined by its own memory, intelligence, initiative, and form."
     />
     <style>
-      :root{--bg:#f4eee5;--paper:rgba(255,251,246,.84);--ink:#14100c;--muted:#645a50;--line:rgba(20,16,12,.1);--panel:#17120f;--accent:#b5593f;--gold:#dfb16b;--olive:#656a34;--cream:#fff7ef;--shadow:0 28px 90px rgba(20,16,12,.12);--r1:40px;--r2:26px;--r3:18px}
-      *{box-sizing:border-box} html{scroll-behavior:smooth}
-      body{margin:0;color:var(--ink);font-family:"Avenir Next","Segoe UI","Trebuchet MS",sans-serif;background:radial-gradient(circle at 15% 12%,rgba(223,177,107,.14),transparent 24%),radial-gradient(circle at 84% 16%,rgba(181,89,63,.14),transparent 24%),linear-gradient(145deg,#f4eee5,#ece2d4 45%,#f7f2ea)}
-      body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(rgba(20,16,12,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(20,16,12,.025) 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(circle at center,#000 46%,transparent 100%)}
-      a{color:inherit;text-decoration:none} img{max-width:100%;display:block}
-      .page{width:min(1280px,calc(100% - 24px));margin:0 auto;padding:16px 0 40px}
-      .shell{overflow:hidden;border-radius:44px;border:1px solid rgba(255,255,255,.58);background:linear-gradient(180deg,rgba(255,255,255,.58),rgba(255,255,255,.36));box-shadow:var(--shadow);backdrop-filter:blur(22px)}
-      .topbar,.footer{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 26px}
+      :root{--bg:#f5efe6;--bg-2:#ece3d6;--paper:rgba(255,251,245,.78);--paper-strong:rgba(255,251,245,.9);--ink:#15110d;--muted:#675d53;--line:rgba(21,17,13,.1);--accent:#ae5b41;--gold:#d4ab6f;--olive:#666a35;--cream:#fbf3e9;--panel:#17120f;--shadow:0 26px 80px rgba(21,17,13,.12);--r1:40px;--r2:28px;--r3:20px}
+      *{box-sizing:border-box}
+      html{scroll-behavior:smooth}
+      body{margin:0;color:var(--ink);font-family:"Avenir Next","Segoe UI","Trebuchet MS",sans-serif;background:
+        radial-gradient(circle at 14% 12%,rgba(212,171,111,.16),transparent 26%),
+        radial-gradient(circle at 86% 10%,rgba(174,91,65,.14),transparent 24%),
+        linear-gradient(145deg,var(--bg),var(--bg-2) 54%,#f7f2ea)}
+      body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(21,17,13,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(21,17,13,.025) 1px,transparent 1px);background-size:34px 34px;mask-image:radial-gradient(circle at center,#000 46%,transparent 100%)}
+      a{color:inherit;text-decoration:none}
+      img{display:block;max-width:100%}
+      h1,h2,h3,p{margin:0}
+      h1,h2,h3{font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",serif;letter-spacing:-.04em;font-weight:700}
+      .page{width:min(1320px,calc(100% - 24px));margin:0 auto;padding:16px 0 40px}
+      .shell{overflow:hidden;border-radius:44px;border:1px solid rgba(255,255,255,.6);background:linear-gradient(180deg,rgba(255,255,255,.56),rgba(255,255,255,.36));box-shadow:var(--shadow);backdrop-filter:blur(22px)}
+      .topbar,.footer{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 28px}
       .topbar{border-bottom:1px solid var(--line)}
       .brand{display:inline-flex;align-items:center;gap:14px}
-      .mark{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,var(--accent),var(--olive));box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 16px 28px rgba(52,22,13,.18)}
+      .mark{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,var(--accent),var(--olive));box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 14px 28px rgba(52,22,13,.16)}
       .mark svg{width:28px;height:28px}
-      .brand strong,.eyebrow,.nav a,.mini,.label{text-transform:uppercase;letter-spacing:.12em}
+      .brand strong,.nav a,.eyebrow,.label,.meta,.mini,.principle small{text-transform:uppercase;letter-spacing:.12em}
       .brand strong{display:block;font-size:13px}
-      .brand span,.footer p,.copy p,.card p,.panel p,.runtime p,.cta p{color:var(--muted);line-height:1.7}
+      .brand span,.footer p,.section-copy,.spec-card p,.path-card p,.runtime p,.core-copy p,.cta p{color:var(--muted);line-height:1.72}
       .brand span{display:block;margin-top:3px;font-size:13px}
       .nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px}
-      .nav a,.btn{border:1px solid rgba(20,16,12,.12);border-radius:999px;padding:11px 16px;font-size:13px;transition:transform .18s ease,border-color .18s ease,background .18s ease}
-      .nav a:hover,.btn:hover{transform:translateY(-2px);border-color:rgba(20,16,12,.24)}
-      .hero,.section,.cta{animation:rise .62s ease both}
-      .hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(360px,.98fr);gap:28px;padding:34px 26px 20px}
-      .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid rgba(181,89,63,.18);border-radius:999px;background:rgba(255,255,255,.44);color:#7b2d1a;font-size:12px}
-      .eyebrow:before{content:"";width:8px;height:8px;border-radius:999px;background:linear-gradient(180deg,var(--gold),var(--accent));box-shadow:0 0 0 6px rgba(223,177,107,.12)}
-      h1,h2,h3{margin:0;font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",serif;letter-spacing:-.035em;font-weight:700}
-      h1{margin-top:20px;max-width:8ch;font-size:clamp(54px,8vw,102px);line-height:.9}
-      h2{font-size:clamp(36px,5vw,62px);line-height:.95}
-      h3{font-size:30px}
-      .lead{max-width:680px;margin-top:20px;color:var(--muted);font-size:clamp(19px,2vw,24px);line-height:1.62}
+      .nav a,.btn{border:1px solid rgba(21,17,13,.12);border-radius:999px;padding:11px 16px;font-size:13px;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+      .nav a:hover,.btn:hover{transform:translateY(-2px);border-color:rgba(21,17,13,.24)}
+      .hero,.section,.cta,.principles{animation:rise .58s ease both}
+      .hero{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(360px,.96fr);gap:34px;padding:40px 28px 22px}
+      .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid rgba(174,91,65,.18);border-radius:999px;background:rgba(255,255,255,.48);color:#7a301e;font-size:12px}
+      .eyebrow:before{content:"";width:8px;height:8px;border-radius:999px;background:linear-gradient(180deg,var(--gold),var(--accent));box-shadow:0 0 0 6px rgba(212,171,111,.12)}
+      h1{margin-top:20px;max-width:7ch;font-size:clamp(56px,8vw,108px);line-height:.9}
+      h2{font-size:clamp(38px,4.8vw,68px);line-height:.94}
+      h3{font-size:30px;line-height:1}
+      .lead{max-width:680px;margin-top:22px;color:var(--muted);font-size:clamp(20px,2vw,25px);line-height:1.58}
+      .hero-note{max-width:64ch;margin-top:18px;color:rgba(21,17,13,.66);font-size:14px;line-height:1.72}
       .row{display:flex;flex-wrap:wrap;gap:12px}
       .hero .row{margin-top:30px}
       .btn.primary{border-color:transparent;color:var(--cream);background:linear-gradient(135deg,var(--accent),var(--olive));box-shadow:0 18px 36px rgba(50,20,12,.18)}
-      .btn.secondary{background:rgba(255,255,255,.48)}
-      .specstrip{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-      .stat,.card,.panel,.copy,.cta{border:1px solid rgba(255,255,255,.58);border-radius:var(--r2);background:var(--paper);box-shadow:0 10px 26px rgba(20,16,12,.05)}
-      .stat{min-width:150px;padding:14px 16px}
-      .mini{display:block;margin-bottom:7px;color:var(--muted);font-size:11px}
-      .stat strong{font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",serif;font-size:18px}
-      .art{margin:0;border-radius:var(--r1);overflow:hidden;color:#f9efe1;background:radial-gradient(circle at top right,rgba(223,177,107,.16),transparent 24%),linear-gradient(180deg,rgba(20,16,13,.98),rgba(29,21,17,.94));border:1px solid rgba(255,245,232,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 28px 56px rgba(20,16,12,.2)}
-      .arttop{display:flex;justify-content:space-between;gap:12px;padding:18px 20px 0}
+      .btn.secondary{background:rgba(255,255,255,.5)}
+      .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:30px}
+      .metric,.principle,.spec-card,.path-card,.core-copy,.cta{border:1px solid rgba(255,255,255,.62);border-radius:var(--r2);background:var(--paper);box-shadow:0 10px 24px rgba(21,17,13,.05)}
+      .metric{padding:16px 18px}
+      .mini{display:block;margin-bottom:8px;color:var(--muted);font-size:11px}
+      .metric strong,.path-card strong{display:block;font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",serif;font-size:20px;line-height:1.05}
+      .metric span{display:block;margin-top:8px;color:var(--muted);font-size:14px;line-height:1.58}
+      .art{margin:0;border-radius:var(--r1);overflow:hidden;color:#f9efe1;background:
+        radial-gradient(circle at top right,rgba(212,171,111,.14),transparent 26%),
+        linear-gradient(180deg,rgba(20,16,13,.98),rgba(29,21,17,.94));border:1px solid rgba(255,245,232,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 30px 58px rgba(21,17,13,.18)}
+      .art-top{display:flex;justify-content:space-between;gap:12px;padding:18px 20px 0}
       .tag{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,245,232,.12);background:rgba(255,245,232,.06);color:rgba(255,244,232,.88);font-size:11px}
-      .meta{color:rgba(255,244,232,.66);font-size:12px}
-      .frame{position:relative;margin:18px;border-radius:28px;overflow:hidden;background:#241b16}
+      .meta{color:rgba(255,244,232,.64);font-size:12px}
+      .frame{position:relative;margin:18px;border-radius:30px;overflow:hidden;background:#231914}
       .frame:before,.frame:after{content:"";position:absolute;inset:0;pointer-events:none}
-      .frame:before{z-index:1;background:radial-gradient(circle at 14% 18%,rgba(223,177,107,.16),transparent 24%),radial-gradient(circle at 82% 14%,rgba(181,89,63,.12),transparent 28%),linear-gradient(135deg,rgba(10,8,6,.16),rgba(10,8,6,0) 34%,rgba(10,8,6,.24) 70%,rgba(10,8,6,.42))}
-      .frame:after{z-index:2;background:linear-gradient(180deg,rgba(14,10,8,.02),rgba(14,10,8,.14) 42%,rgba(14,10,8,.66)),linear-gradient(90deg,rgba(14,10,8,.24),rgba(14,10,8,.02) 44%,rgba(14,10,8,.26))}
-      .frame img{height:540px;width:100%;object-fit:cover;object-position:52% center;transform:scale(1.04);filter:saturate(.9) contrast(1.04) brightness(.84)}
-      .ledger{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:0 18px 18px}
-      .ledger article{padding:16px;border-radius:20px;border:1px solid rgba(255,245,232,.1);background:rgba(255,245,232,.06)}
-      .ledger strong{display:block;margin-bottom:8px;color:#fff5e7;font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",serif;font-size:20px}
-      .ledger span{display:block;color:rgba(255,244,232,.72);font-size:14px;line-height:1.6}
-      .section{padding:22px 26px 0}
-      .head{display:grid;gap:10px;margin-bottom:24px}
-      .label{color:#7b2d1a;font-size:12px}
-      .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-      .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-      .card,.copy{padding:22px}
-      .num{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;margin-bottom:14px;border-radius:999px;background:rgba(181,89,63,.12);color:#7b2d1a;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-      .card h3,.panel h3,.runtime h3{margin-bottom:10px}
-      .family{position:relative;overflow:hidden;min-height:220px}
-      .family:after{content:"";position:absolute;inset:auto -24px -24px auto;width:92px;height:92px;border-radius:999px;opacity:.14;background:linear-gradient(135deg,var(--accent),var(--gold))}
-      .family strong{display:block;margin-bottom:10px;color:#7b2d1a;letter-spacing:.12em;text-transform:uppercase;font-size:11px}
-      .forms,.coregrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-      .panel{padding:24px}
-      .still{background:radial-gradient(circle at top right,rgba(223,177,107,.14),transparent 28%),rgba(255,251,246,.92)}
-      .moving{background:radial-gradient(circle at top right,rgba(101,106,52,.14),transparent 28%),rgba(255,251,246,.92)}
-      .list{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:12px}
-      .list li{padding-top:12px;border-top:1px solid rgba(20,16,12,.08)}
-      .list strong{display:block;margin-bottom:6px;font-size:16px}
-      .runtime{padding:24px;border-radius:var(--r2);color:#f9efe1;background:radial-gradient(circle at top right,rgba(223,177,107,.16),transparent 24%),linear-gradient(180deg,rgba(18,14,11,.98),rgba(27,20,16,.94));border:1px solid rgba(255,245,232,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 28px 56px rgba(20,16,12,.18)}
+      .frame:before{z-index:1;background:
+        radial-gradient(circle at 14% 18%,rgba(212,171,111,.14),transparent 24%),
+        radial-gradient(circle at 82% 14%,rgba(174,91,65,.12),transparent 28%),
+        linear-gradient(135deg,rgba(10,8,6,.14),rgba(10,8,6,0) 34%,rgba(10,8,6,.22) 70%,rgba(10,8,6,.42))}
+      .frame:after{z-index:2;background:
+        linear-gradient(180deg,rgba(14,10,8,.02),rgba(14,10,8,.1) 38%,rgba(14,10,8,.58)),
+        linear-gradient(90deg,rgba(14,10,8,.2),rgba(14,10,8,.02) 40%,rgba(14,10,8,.24))}
+      .frame img{width:100%;height:600px;object-fit:cover;object-position:50% center;transform:scale(1.03);filter:saturate(.88) contrast(1.02) brightness(.84)}
+      .art-copy{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:0 18px 18px}
+      .art-copy article{padding:16px;border-radius:20px;border:1px solid rgba(255,245,232,.1);background:rgba(255,245,232,.06)}
+      .art-copy strong{display:block;margin-bottom:8px;color:#fff5e7;font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",serif;font-size:21px}
+      .art-copy span{display:block;color:rgba(255,244,232,.72);font-size:14px;line-height:1.62}
+      .principles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding:0 28px 6px}
+      .principle{padding:18px 18px 20px;background:rgba(255,251,245,.62)}
+      .principle small{display:block;margin-bottom:10px;color:#7a301e;font-size:11px}
+      .principle strong{display:block;font-size:18px;line-height:1.2}
+      .section{padding:34px 28px 0}
+      .section-head{display:grid;gap:10px;max-width:980px}
+      .label{color:#7a301e;font-size:12px}
+      .section-copy{font-size:18px}
+      .doctrine{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.72fr);gap:22px;margin-top:24px}
+      .quote,.runtime{border-radius:var(--r1)}
+      .quote{padding:28px;background:linear-gradient(180deg,rgba(255,251,245,.86),rgba(255,251,245,.68));border:1px solid rgba(255,255,255,.62);box-shadow:0 10px 24px rgba(21,17,13,.05)}
+      .quote p{font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",serif;font-size:clamp(30px,3vw,46px);line-height:1.02}
+      .quote span{display:block;margin-top:12px;color:var(--muted);font-size:14px;line-height:1.68}
+      .specs{display:grid;grid-template-columns:minmax(0,.68fr) minmax(0,1.32fr);gap:22px;margin-top:26px}
+      .spec-intro{padding:24px 0}
+      .spec-intro p + p{margin-top:12px}
+      .spec-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+      .spec-card{padding:20px 20px 22px}
+      .spec-card strong{display:block;margin-bottom:12px;font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",serif;font-size:30px;line-height:.95}
+      .spec-card p{font-size:15px}
+      .path-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}
+      .path-card{padding:22px}
+      .path-card p{margin-top:12px;font-size:15px}
+      .path-card .mini{margin-bottom:12px}
+      .path-card.software{background:radial-gradient(circle at top right,rgba(174,91,65,.1),transparent 26%),var(--paper-strong)}
+      .path-card.still{background:radial-gradient(circle at top right,rgba(212,171,111,.14),transparent 28%),var(--paper-strong)}
+      .path-card.moving{background:radial-gradient(circle at top right,rgba(102,106,53,.14),transparent 28%),var(--paper-strong)}
+      .core-grid{display:grid;grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);gap:18px;margin-top:26px}
+      .runtime{padding:24px;color:#f9efe1;background:
+        radial-gradient(circle at top right,rgba(212,171,111,.16),transparent 24%),
+        linear-gradient(180deg,rgba(18,14,11,.98),rgba(27,20,16,.94));border:1px solid rgba(255,245,232,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 28px 56px rgba(21,17,13,.18)}
       .runtime p{color:rgba(249,239,225,.78)}
-      .rows{display:grid;gap:12px;margin-top:18px}
-      .r{display:grid;grid-template-columns:92px 1fr auto;gap:12px;align-items:center;padding:14px;border-radius:16px;background:rgba(255,245,232,.05);border:1px solid rgba(255,245,232,.08)}
-      .r strong{font-size:13px}.r span{color:rgba(249,239,225,.72);font-size:13px}.r em{color:var(--gold);font-style:normal;font-size:12px}
-      .cta{margin:22px 26px 0;padding:24px;color:var(--cream);background:radial-gradient(circle at left top,rgba(223,177,107,.24),transparent 30%),linear-gradient(135deg,rgba(181,89,63,.97),rgba(101,106,52,.93))}
-      .cta p{max-width:64ch;color:rgba(255,247,239,.86)}
-      .cta .btn.primary{background:rgba(18,14,11,.9)} .cta .btn.secondary{color:var(--cream);border-color:rgba(255,247,239,.26);background:rgba(255,247,239,.08)} .cta .row{margin-top:18px}
+      .runtime-rows{display:grid;gap:12px;margin-top:18px}
+      .runtime-row{display:grid;grid-template-columns:110px 1fr auto;gap:12px;align-items:center;padding:14px;border-radius:16px;background:rgba(255,245,232,.05);border:1px solid rgba(255,245,232,.08)}
+      .runtime-row strong{font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+      .runtime-row span{color:rgba(249,239,225,.72);font-size:13px}
+      .runtime-row em{color:var(--gold);font-style:normal;font-size:12px}
+      .core-copy{padding:26px}
+      .core-copy p + p{margin-top:12px}
+      .cta{margin:28px 28px 0;padding:26px;color:var(--cream);background:
+        radial-gradient(circle at left top,rgba(212,171,111,.24),transparent 30%),
+        linear-gradient(135deg,rgba(174,91,65,.97),rgba(102,106,53,.93))}
+      .cta p{max-width:62ch;color:rgba(255,247,239,.86)}
+      .cta .row{margin-top:18px}
+      .cta .btn.primary{background:rgba(18,14,11,.9)}
+      .cta .btn.secondary{color:var(--cream);border-color:rgba(255,247,239,.26);background:rgba(255,247,239,.08)}
+      .footer{border-top:1px solid var(--line)}
       @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-      @media (max-width:1180px){.hero,.grid2,.forms,.coregrid{grid-template-columns:1fr}.grid3,.ledger{grid-template-columns:repeat(2,minmax(0,1fr))}}
-      @media (max-width:840px){.topbar,.footer{flex-direction:column;align-items:flex-start}.grid3,.ledger{grid-template-columns:1fr}.frame img{height:420px}.r{grid-template-columns:1fr}}
-      @media (max-width:640px){.page{width:min(100% - 16px,1280px);padding-top:10px}.topbar,.hero,.section,.footer,.cta{padding-left:16px;padding-right:16px}.cta{margin-left:16px;margin-right:16px}h1{font-size:clamp(44px,15vw,64px)}.arttop{padding-left:16px;padding-right:16px}.frame{margin-left:16px;margin-right:16px}.ledger{padding-left:16px;padding-right:16px}}
+      @media (max-width:1180px){.hero,.doctrine,.specs,.core-grid{grid-template-columns:1fr}.principles,.path-grid,.art-copy{grid-template-columns:repeat(2,minmax(0,1fr))}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+      @media (max-width:860px){.topbar,.footer{flex-direction:column;align-items:flex-start}.nav{justify-content:flex-start}.principles,.path-grid,.art-copy,.spec-grid{grid-template-columns:1fr}.frame img{height:440px}.runtime-row{grid-template-columns:1fr}}
+      @media (max-width:640px){.page{width:min(100% - 16px,1320px);padding-top:10px}.topbar,.hero,.section,.footer,.cta{padding-left:16px;padding-right:16px}.cta{margin-left:16px;margin-right:16px}h1{font-size:clamp(44px,15vw,66px)}.art-top{padding-left:16px;padding-right:16px}.frame{margin-left:16px;margin-right:16px}.art-copy,.principles{padding-left:16px;padding-right:16px}.metrics{grid-template-columns:1fr}}
     </style>
   </head>
   <body>
@@ -103,13 +139,13 @@
                 <path d="M8 14L12 18L16 14"></path>
               </svg>
             </div>
-            <div class="brandcopy">
+            <div>
               <strong>Ojaq</strong>
               <span>AI agents as products</span>
             </div>
           </a>
           <nav class="nav" aria-label="Primary navigation">
-            <a href="#why">Doctrine</a>
+            <a href="#doctrine">Doctrine</a>
             <a href="#specs">Specs</a>
             <a href="#forms">Forms</a>
             <a href="#core">Core</a>
@@ -119,153 +155,149 @@
         <main>
           <section class="hero">
             <div>
-              <div class="eyebrow">Product company for AI agents</div>
+              <div class="eyebrow">The product company for AI agents</div>
               <h1>Ojaq builds AI agents as products.</h1>
               <p class="lead">Each Ojaq agent is defined by its own memory, intelligence, initiative, and form. Software is the first surface. Still and moving forms follow.</p>
               <div class="row">
-                <a class="btn primary" href="#specs">See the specs</a>
-                <a class="btn secondary" href="#forms">See the forms</a>
+                <a class="btn primary" href="#specs">See the specification system</a>
+                <a class="btn secondary" href="#forms">See the form path</a>
               </div>
-              <p style="margin-top:18px;color:rgba(20,16,12,.62);font-size:14px;line-height:1.7">The goal is not a generic assistant. The goal is a family of agents with clear product identity, clean specifications, and forms that feel calm, minimal, and inevitable.</p>
-              <div class="specstrip" aria-label="Product pillars">
-                <div class="stat"><span class="mini">Memory</span><strong>Continuity over time</strong></div>
-                <div class="stat"><span class="mini">Intelligence</span><strong>Judgment in the moment</strong></div>
-                <div class="stat"><span class="mini">Initiative</span><strong>A defined social stance</strong></div>
-                <div class="stat"><span class="mini">Form</span><strong>Software, still, moving</strong></div>
+              <p class="hero-note">The point is not a generic assistant. The point is a family of agents with legible product identity, clear specifications, and forms designed with restraint.</p>
+              <div class="metrics" aria-label="Product pillars">
+                <article class="metric"><span class="mini">Memory</span><strong>Continuity</strong><span>What the agent keeps, recalls, and carries forward.</span></article>
+                <article class="metric"><span class="mini">Intelligence</span><strong>Judgment</strong><span>How well it understands what matters in the moment.</span></article>
+                <article class="metric"><span class="mini">Initiative</span><strong>Stance</strong><span>How actively it guides, waits, or intervenes.</span></article>
+                <article class="metric"><span class="mini">Form</span><strong>Path</strong><span>Software first, then still and moving products.</span></article>
               </div>
             </div>
 
             <figure class="art">
-              <div class="arttop">
-                <span class="tag">Concept family visual</span>
+              <div class="art-top">
+                <span class="tag">Illustrative product-family visual</span>
                 <span class="meta">Software first. Forms next.</span>
               </div>
               <div class="frame">
                 <img
                   src="/images/ojaq-investor-hero.png"
-                  alt="Ojaq product-family concept showing a warm agent presence across software and future forms."
+                  alt="Illustrative Ojaq concept showing a warm agent presence across software and future product forms."
                   loading="eager"
                   decoding="async"
                   fetchpriority="high"
                 />
               </div>
-              <figcaption class="ledger">
-                <article><strong>Software</strong><span>The first working surface for the Ojaq family and the fastest path to a real product.</span></article>
-                <article><strong>Still</strong><span>Calm forms that hold presence in a place without turning the environment into a gadget.</span></article>
-                <article><strong>Moving</strong><span>Forms that carry the same agent identity through motion, continuity, and real-world action.</span></article>
+              <figcaption class="art-copy">
+                <article><strong>Software</strong><span>The first working surface for the Ojaq family and the fastest path to a refined agent.</span></article>
+                <article><strong>Still</strong><span>Quiet products that hold presence in a room without turning the environment into a gadget.</span></article>
+                <article><strong>Moving</strong><span>Products that carry the same agent identity through motion, continuity, and real-world use.</span></article>
               </figcaption>
             </figure>
           </section>
 
-          <section class="section" id="why">
-            <div class="head">
+          <section class="principles" aria-label="Product principles">
+            <article class="principle"><small>01</small><strong>Products, not prompts</strong></article>
+            <article class="principle"><small>02</small><strong>Specifications, not vague personas</strong></article>
+            <article class="principle"><small>03</small><strong>Forms follow identity</strong></article>
+            <article class="principle"><small>04</small><strong>Minimal by design</strong></article>
+          </section>
+
+          <section class="section" id="doctrine">
+            <div class="section-head">
               <span class="label">Doctrine</span>
-              <h2>Agents, not assistants.</h2>
+              <h2>A serious agent product should be legible.</h2>
+              <p class="section-copy">Most AI products collapse into one generic assistant. Ojaq is built around the opposite idea: distinct agents, clear specifications, and a disciplined path from software to still and moving forms.</p>
             </div>
-            <div class="grid2">
-              <p>Ojaq is not building prompt wrappers, copilot features, or generic assistants. It is building a family of agents with clear identity, legible specifications, and a product path that extends beyond software.</p>
-              <p>The company starts in software because software is the fastest path to a working agent. But the company is not ultimately defined by software. It is defined by the quality of the agents and the forms they inhabit.</p>
-            </div>
-            <div class="grid3" style="margin-top:24px">
-              <article class="card"><span class="num">01</span><h3>Products, not prompts</h3><p>An Ojaq agent should feel like a product you can understand, choose, and trust, not a prompt preset.</p></article>
-              <article class="card"><span class="num">02</span><h3>Specifications matter</h3><p>Memory, intelligence, initiative, voice, and form should be clear the way great product specs are.</p></article>
-              <article class="card"><span class="num">03</span><h3>Forms follow identity</h3><p>The form should inherit the agent. It should never define the agent in place of its core character.</p></article>
+            <div class="doctrine">
+              <div class="section-copy">
+                <p>Software is only the first proving ground. It is where the agent can be refined fastest, where the loop can be tested live, and where product language can become precise.</p>
+                <p style="margin-top:14px">The company is not ultimately defined by a dashboard or a workflow feature. It is defined by the quality of the agents and the forms they inhabit.</p>
+              </div>
+              <aside class="quote">
+                <p>Agents first. Forms next.</p>
+                <span>That is the simplest version of the company doctrine and the standard the rest of the product system has to meet.</span>
+              </aside>
             </div>
           </section>
 
           <section class="section" id="specs">
-            <div class="head">
-              <span class="label">Specifications</span>
-              <h2>Every Ojaq agent has specifications.</h2>
-              <p>Ojaq agents should be understood like products. The point is not abstract capability. The point is a defined agent with a clear profile.</p>
+            <div class="section-head">
+              <span class="label">Specification system</span>
+              <h2>The agent comes with a profile.</h2>
             </div>
-            <div class="grid3">
-              <article class="card"><span class="mini">01</span><h3>Memory</h3><p>How much continuity the agent carries, what it remembers, and how well it preserves context over time.</p></article>
-              <article class="card"><span class="mini">02</span><h3>Intelligence</h3><p>Its reasoning quality, judgment, and ability to understand what matters in the moment.</p></article>
-              <article class="card"><span class="mini">03</span><h3>Initiative</h3><p>How actively the agent intervenes, guides, waits, and carries social confidence.</p></article>
-              <article class="card"><span class="mini">04</span><h3>Voice</h3><p>Its tone, cadence, and spoken presence when the product needs to act through audio.</p></article>
-              <article class="card"><span class="mini">05</span><h3>Tools</h3><p>What the agent can access, operate, and orchestrate across workflows and environments.</p></article>
-              <article class="card"><span class="mini">06</span><h3>Form Class</h3><p>Whether the agent begins in software, a still product, or a moving product and how it evolves.</p></article>
-            </div>
-          </section>
-
-          <section class="section" id="family">
-            <div class="head">
-              <span class="label">Family</span>
-              <h2>A family, not a single default.</h2>
-              <p>Different Ojaq agents can be tuned for different roles and social styles while still belonging to one coherent product system.</p>
-            </div>
-            <div class="grid3">
-              <article class="card family"><strong>Conversational</strong><h3>Guide</h3><p>Composed, articulate, and socially fluent. Designed for explanation, translation, and elegant presence.</p></article>
-              <article class="card family"><strong>Operational</strong><h3>Signal</h3><p>Concise, direct, and faster-moving. Designed for timing, action, and clarity under pressure.</p></article>
-              <article class="card family"><strong>Continuity</strong><h3>Companion</h3><p>Persistent, context-rich, and memory-first. Designed to carry identity and continuity across time.</p></article>
+            <div class="specs">
+              <div class="spec-intro section-copy">
+                <p>Ojaq agents should be understood the way great products are understood: through a clear profile, not abstract capability claims.</p>
+                <p>A future lineup should feel spec-driven, not persona-driven. The important question is not whether an agent sounds different. The important question is how it thinks, acts, remembers, and where it lives first.</p>
+              </div>
+              <div class="spec-grid">
+                <article class="spec-card"><span class="mini">01</span><strong>Memory</strong><p>How much continuity the agent carries and how well it preserves context over time.</p></article>
+                <article class="spec-card"><span class="mini">02</span><strong>Intelligence</strong><p>The quality of reasoning, judgment, and prioritization under live conditions.</p></article>
+                <article class="spec-card"><span class="mini">03</span><strong>Initiative</strong><p>Its social stance: whether it waits, guides, intervenes, or acts with confidence.</p></article>
+                <article class="spec-card"><span class="mini">04</span><strong>Voice</strong><p>Its spoken presence, cadence, and clarity when the product operates through audio.</p></article>
+                <article class="spec-card"><span class="mini">05</span><strong>Tools</strong><p>What the agent can access, operate, and orchestrate across systems and environments.</p></article>
+                <article class="spec-card"><span class="mini">06</span><strong>Form class</strong><p>Whether the product begins in software, a still form, or a moving form and how it evolves.</p></article>
+              </div>
             </div>
           </section>
 
           <section class="section" id="forms">
-            <div class="head">
-              <span class="label">Forms</span>
-              <h2>Two form families.</h2>
-              <p>Ojaq starts with a simple split. Still forms bring calm presence into a place. Moving forms carry the same agent identity through space and time.</p>
+            <div class="section-head">
+              <span class="label">Form path</span>
+              <h2>One core. Three product surfaces.</h2>
+              <p class="section-copy">The family begins in software, extends into still products that hold presence, and then into moving products that carry the same identity through the world.</p>
             </div>
-            <div class="forms">
-              <article class="panel still">
-                <span class="mini">Still</span>
-                <h3>Products that hold presence.</h3>
-                <p>Still forms should feel quiet, precise, and native to the environments they live in.</p>
-                <ul class="list">
-                  <li><strong>Room Presence</strong>Shared spaces where the agent becomes a calm layer of coordination.</li>
-                  <li><strong>Desk Presence</strong>Focused environments where the agent remains available without taking over the workspace.</li>
-                  <li><strong>Ambient Presence</strong>Subtle interaction where the product fades into the background until needed.</li>
-                </ul>
+            <div class="path-grid">
+              <article class="path-card software">
+                <span class="mini">Software</span>
+                <strong>The first working surface.</strong>
+                <p>The fastest path to refining the agent loop, product language, and specification system.</p>
               </article>
-              <article class="panel moving">
+              <article class="path-card still">
+                <span class="mini">Still</span>
+                <strong>Products that hold presence.</strong>
+                <p>Calm, precise forms that remain native to their environment instead of turning the room into a gadget.</p>
+              </article>
+              <article class="path-card moving">
                 <span class="mini">Moving</span>
-                <h3>Products that carry identity through motion.</h3>
-                <p>Moving forms should retain the same clarity and product discipline while operating in the world.</p>
-                <ul class="list">
-                  <li><strong>Personal Companion</strong>Movement across the day with continuity, context, and coordination.</li>
-                  <li><strong>Field Mobility</strong>Operational settings where the agent moves with the work instead of waiting at a desk.</li>
-                  <li><strong>Physical Autonomy</strong>Future products that navigate space while staying minimal, legible, and useful.</li>
-                </ul>
+                <strong>Products that carry identity.</strong>
+                <p>Forms that preserve the same agent character through motion, continuity, and real-world action.</p>
               </article>
             </div>
           </section>
 
           <section class="section" id="core">
-            <div class="head">
-              <span class="label">Core</span>
-              <h2>The core already works.</h2>
-              <p>Ojaq starts with a live runtime today so the long-term product vision grows from a real agent loop, not a slide.</p>
+            <div class="section-head">
+              <span class="label">Live core</span>
+              <h2>The company starts from a working loop.</h2>
+              <p class="section-copy">Ojaq already runs as a live software system. The long-term product family grows from a real core, not a conceptual roadmap.</p>
             </div>
-            <div class="coregrid">
+            <div class="core-grid">
               <article class="runtime">
                 <h3>Live agent runtime</h3>
-                <p>Ojaq already runs as a live system with perception, policy, response generation, and voice output in one loop.</p>
-                <div class="rows">
-                  <div class="r"><strong>Perception</strong><span>Live context intake and room reading</span><em>live</em></div>
-                  <div class="r"><strong>Policy</strong><span>Intervention and response selection</span><em>live</em></div>
-                  <div class="r"><strong>Voice</strong><span>Fast playback through the runtime</span><em>live</em></div>
+                <p>Perception, policy, response generation, and voice already operate in one loop. That is where the product discipline begins.</p>
+                <div class="runtime-rows">
+                  <div class="runtime-row"><strong>Perception</strong><span>Live context intake and room reading</span><em>live</em></div>
+                  <div class="runtime-row"><strong>Policy</strong><span>Intervention and response selection</span><em>live</em></div>
+                  <div class="runtime-row"><strong>Voice</strong><span>Fast playback through the runtime</span><em>live</em></div>
                 </div>
               </article>
-              <article class="copy">
-                <h3>Software is the first surface.</h3>
-                <p>Ojaq does not begin as a dashboard business. It begins with a real agent product and a clear product language.</p>
-                <p style="margin-top:12px">Software comes first because it is the fastest way to refine the agent. Still forms come next. Moving forms follow from the same product identity.</p>
+              <article class="core-copy">
+                <h3>Refine the core before the form.</h3>
+                <p>Software comes first because it is the fastest way to make the agent better. It lets Ojaq harden memory, judgment, initiative, and voice before the family expands into still and moving products.</p>
+                <p>This keeps the company grounded in product quality rather than concept art. The form should inherit a strong agent, not compensate for a weak one.</p>
                 <div class="row" style="margin-top:18px">
                   <a class="btn primary" href="#specs">Review the specs</a>
-                  <a class="btn secondary" href="#forms">See the form path</a>
+                  <a class="btn secondary" href="#forms">Review the form path</a>
                 </div>
               </article>
             </div>
           </section>
 
           <section class="cta">
-            <h2>One family. Clear specifications. Two form classes.</h2>
-            <p>Ojaq is building the agent company for coordination, starting with a live product today and expanding into still and moving forms over time.</p>
+            <h2>One family. Clear specifications. A real core.</h2>
+            <p>Ojaq is building the agent company for products that begin in software and extend into still and moving forms with the same identity intact.</p>
             <div class="row">
-              <a class="btn primary" href="#specs">See the specifications</a>
-              <a class="btn secondary" href="#core">See the live core</a>
+              <a class="btn primary" href="#core">See the live core</a>
+              <a class="btn secondary" href="#specs">See the specification system</a>
             </div>
           </section>
         </main>
