@@ -289,6 +289,7 @@
         margin: 0;
         min-height: 560px;
         position: relative;
+        isolation: isolate;
         overflow: hidden;
         border-radius: var(--radius-xl);
         background: linear-gradient(180deg, rgba(20, 17, 14, 0.96), rgba(37, 26, 20, 0.92));
@@ -298,22 +299,38 @@
           0 28px 55px rgba(22, 18, 15, 0.18);
       }
 
+      .hero-figure::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background:
+          radial-gradient(circle at 18% 22%, rgba(214, 161, 40, 0.14), transparent 24%),
+          radial-gradient(circle at 82% 16%, rgba(191, 79, 55, 0.12), transparent 26%),
+          linear-gradient(135deg, rgba(10, 8, 6, 0.16) 0%, rgba(10, 8, 6, 0) 34%, rgba(10, 8, 6, 0.24) 70%, rgba(10, 8, 6, 0.42) 100%);
+        pointer-events: none;
+      }
+
       .hero-figure img {
         width: 100%;
         height: 560px;
         display: block;
+        position: relative;
+        z-index: 0;
         object-fit: cover;
-        object-position: center;
-        filter: saturate(1.02) contrast(1.02);
+        object-position: 52% center;
+        transform: scale(1.04);
+        filter: saturate(0.88) contrast(1.04) brightness(0.84);
       }
 
       .hero-figure::after {
         content: "";
         position: absolute;
         inset: 0;
+        z-index: 2;
         background:
-          linear-gradient(180deg, rgba(16, 12, 9, 0.04) 0%, rgba(16, 12, 9, 0.1) 38%, rgba(16, 12, 9, 0.62) 100%),
-          linear-gradient(90deg, rgba(16, 12, 9, 0.18) 0%, rgba(16, 12, 9, 0) 40%);
+          linear-gradient(180deg, rgba(16, 12, 9, 0.06) 0%, rgba(16, 12, 9, 0.18) 34%, rgba(16, 12, 9, 0.68) 100%),
+          linear-gradient(90deg, rgba(16, 12, 9, 0.3) 0%, rgba(16, 12, 9, 0.06) 44%, rgba(16, 12, 9, 0.32) 100%);
         pointer-events: none;
       }
 
@@ -341,7 +358,7 @@
         left: 18px;
         right: 18px;
         bottom: 18px;
-        max-width: 380px;
+        max-width: 420px;
         padding: 16px 18px;
         border-radius: 22px;
         border: 1px solid rgba(255, 244, 233, 0.12);
@@ -349,6 +366,19 @@
         color: rgba(255, 239, 222, 0.9);
         font-size: 14px;
         line-height: 1.55;
+      }
+
+      .hero-caption strong {
+        display: block;
+        margin-bottom: 6px;
+        color: #fff3e5;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .hero-caption span {
+        display: block;
       }
 
       .proof-panel.dark {
@@ -678,13 +708,17 @@
             </div>
 
             <figure class="hero-figure">
-              <div class="hero-badge">Live room intelligence</div>
+              <div class="hero-badge">Illustrative live surface</div>
               <img
                 src="/images/ojaq-investor-hero.png"
-                alt="Ojaq turning live discussion into decisions, owners, and next steps."
+                alt="Ojaq hero illustration showing live group coordination as a warm signal field."
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
               />
               <figcaption class="hero-caption">
-                Ojaq turns scattered live discussion into visible decisions, ownership, and next steps.
+                <strong>Ojaq Signal View</strong>
+                <span>Ojaq makes momentum, ownership, and direction legible while the room is still live.</span>
               </figcaption>
             </figure>
 
