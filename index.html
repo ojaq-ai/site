@@ -19,16 +19,16 @@
     <meta property="og:url" content="https://ojaq.ai/" />
     <meta name="twitter:card" content="summary" />
     <style>
-      :root{--bg:#f4eee5;--paper:rgba(255,251,246,.84);--paper-strong:rgba(255,251,246,.93);--ink:#14100c;--muted:#655b51;--line:rgba(20,16,12,.1);--panel:#15110e;--panel-line:rgba(255,247,239,.1);--warm:#b55b42;--gold:#d8ad70;--olive:#5d6541;--cream:#fff8ef;--shadow:0 30px 90px rgba(20,16,12,.12);--r1:40px;--r2:28px;--r3:18px}
+      :root{--bg:#f4eee5;--paper:rgba(255,251,246,.88);--paper-strong:rgba(255,251,246,.95);--ink:#14100c;--muted:#655b51;--line:rgba(20,16,12,.1);--panel:#15110e;--panel-line:rgba(255,247,239,.1);--warm:#b55b42;--gold:#d8ad70;--olive:#5d6541;--cream:#fff8ef;--shadow:0 30px 90px rgba(20,16,12,.12);--r1:40px;--r2:28px;--r3:18px}
       *{box-sizing:border-box}
       html{scroll-behavior:smooth}
       body{margin:0;color:var(--ink);font-family:"Avenir Next","Segoe UI","Trebuchet MS",sans-serif;background:
         radial-gradient(circle at 12% 10%,rgba(216,173,112,.16),transparent 24%),
-        radial-gradient(circle at 86% 12%,rgba(181,91,66,.12),transparent 24%),
+        radial-gradient(circle at 86% 12%,rgba(181,91,66,.1),transparent 24%),
         linear-gradient(145deg,#f4eee5,#ece3d6 48%,#f7f2ea)}
-      body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(20,16,12,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(20,16,12,.025) 1px,transparent 1px);background-size:34px 34px;mask-image:radial-gradient(circle at center,#000 46%,transparent 100%)}
+      body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;background-image:linear-gradient(rgba(20,16,12,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(20,16,12,.02) 1px,transparent 1px);background-size:34px 34px;mask-image:radial-gradient(circle at center,#000 46%,transparent 100%)}
       a{color:inherit;text-decoration:none}
-      .page{width:min(1280px,calc(100% - 24px));margin:0 auto;padding:16px 0 40px}
+      .page{width:min(1200px,calc(100% - 24px));margin:0 auto;padding:16px 0 40px}
       .shell{overflow:hidden;border-radius:44px;border:1px solid rgba(255,255,255,.58);background:linear-gradient(180deg,rgba(255,255,255,.58),rgba(255,255,255,.38));box-shadow:var(--shadow);backdrop-filter:blur(22px)}
       .topbar,.footer{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 26px}
       .topbar{border-bottom:1px solid var(--line)}
@@ -37,105 +37,81 @@
       .mark svg{width:28px;height:28px}
       .brand strong,.eyebrow,.nav a,.navcta,.mini,.label,.kind{text-transform:uppercase;letter-spacing:.12em}
       .brand strong{display:block;font-size:13px}
-      .brand span,.footer p,.bodycopy,.card p,.panel p,.runtime p,.cta p,.leadnote,.proofcopy{color:var(--muted);line-height:1.7}
+      .brand span,.footer p,.bodycopy,.card p,.panel p,.proofcopy p,.leadnote,.visual p{color:var(--muted);line-height:1.7}
       .brand span{display:block;margin-top:3px;font-size:13px}
       .navwrap{display:flex;align-items:center;gap:12px}
       .nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px}
       .nav a,.btn,.navcta{border:1px solid rgba(20,16,12,.12);border-radius:999px;padding:11px 16px;font-size:13px;transition:transform .18s ease,border-color .18s ease,background .18s ease}
       .nav a:hover,.btn:hover,.navcta:hover{transform:translateY(-2px);border-color:rgba(20,16,12,.24)}
-      .navcta{color:var(--cream);border-color:transparent;background:linear-gradient(135deg,var(--warm),var(--olive));box-shadow:0 16px 34px rgba(50,20,12,.16)}
-      .hero,.section,.cta{animation:rise .64s ease both}
-      .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,.94fr);gap:34px;padding:38px 26px 18px}
-      .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid rgba(181,91,66,.18);border-radius:999px;background:rgba(255,255,255,.44);color:#7b2d1a;font-size:12px}
+      .navcta,.btn.primary{color:var(--cream);border-color:transparent;background:linear-gradient(135deg,var(--warm),var(--olive));box-shadow:0 16px 34px rgba(50,20,12,.16)}
+      .btn.secondary{background:rgba(255,255,255,.5)}
+      .hero,.section,.cta{animation:rise .56s ease both}
+      .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,.9fr);gap:34px;padding:42px 26px 22px}
+      .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid rgba(181,91,66,.18);border-radius:999px;background:rgba(255,255,255,.46);color:#7b2d1a;font-size:12px}
       .eyebrow:before{content:"";width:8px;height:8px;border-radius:999px;background:linear-gradient(180deg,var(--gold),var(--warm));box-shadow:0 0 0 6px rgba(216,173,112,.12)}
       h1,h2,h3,h4{margin:0;font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",serif;letter-spacing:-.035em;font-weight:700}
-      h1{margin-top:20px;max-width:7ch;font-size:clamp(56px,8vw,104px);line-height:.9}
-      h2{font-size:clamp(36px,5vw,62px);line-height:.95}
-      h3{font-size:30px}
+      h1{margin-top:20px;max-width:7ch;font-size:clamp(54px,8vw,102px);line-height:.9}
+      h2{font-size:clamp(34px,5vw,58px);line-height:.96}
+      h3{font-size:28px}
       h4{font-size:24px}
-      .lead{max-width:680px;margin-top:20px;font-size:clamp(19px,2vw,24px);line-height:1.6;color:var(--muted)}
+      .lead{max-width:640px;margin-top:20px;font-size:clamp(19px,2vw,24px);line-height:1.6;color:var(--muted)}
       .leadnote{max-width:58ch;margin-top:18px;font-size:14px}
       .row{display:flex;flex-wrap:wrap;gap:12px}
-      .hero .row{margin-top:30px}
-      .btn.primary{border-color:transparent;color:var(--cream);background:linear-gradient(135deg,var(--warm),var(--olive));box-shadow:0 18px 36px rgba(50,20,12,.18)}
-      .btn.secondary{background:rgba(255,255,255,.48)}
+      .hero .row{margin-top:28px}
       .pillars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:28px 0 0;padding:0;list-style:none}
-      .pillars li,.card,.panel,.copy,.cta,.visual,.specpanel{border:1px solid rgba(255,255,255,.58);border-radius:var(--r2);background:var(--paper);box-shadow:0 10px 26px rgba(20,16,12,.05)}
+      .pillars li,.card,.panel,.proofcopy,.cta,.visual,.specpanel,.runtime{border:1px solid rgba(255,255,255,.58);border-radius:var(--r2);background:var(--paper);box-shadow:0 10px 26px rgba(20,16,12,.05)}
       .pillars li{padding:15px 16px}
       .mini{display:block;margin-bottom:7px;color:var(--muted);font-size:11px}
-      .pillars strong,.metric strong,.specrow strong,.familycard strong,.runtime strong{font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",serif}
+      .pillars strong,.specrow strong,.runtime strong,.familymeta strong{font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",serif}
       .pillars strong{font-size:18px}
-      .visual{position:relative;padding:18px;color:var(--cream);border:1px solid rgba(255,247,239,.08);background:
+      .visual{padding:20px;color:var(--cream);border:1px solid rgba(255,247,239,.08);background:
         radial-gradient(circle at top right,rgba(216,173,112,.16),transparent 24%),
         linear-gradient(180deg,rgba(18,14,11,.98),rgba(27,20,16,.94));box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 28px 56px rgba(20,16,12,.18)}
-      .visualhead{display:flex;justify-content:space-between;gap:12px;align-items:center}
-      .visualhead .mini{color:rgba(255,244,232,.62)}
-      .visualhead span:last-child{color:rgba(255,244,232,.64);font-size:12px}
-      .visualstage{position:relative;min-height:560px;margin-top:18px;border-radius:32px;overflow:hidden;border:1px solid var(--panel-line);background:
-        radial-gradient(circle at 18% 18%,rgba(216,173,112,.16),transparent 24%),
-        radial-gradient(circle at 84% 14%,rgba(181,91,66,.12),transparent 24%),
-        linear-gradient(180deg,rgba(255,247,239,.04),rgba(255,247,239,.02))}
-      .glow,.glow2{position:absolute;border-radius:999px;filter:blur(12px);opacity:.75}
-      .glow{inset:auto auto 72px 56px;width:220px;height:220px;background:radial-gradient(circle,rgba(216,173,112,.26),transparent 70%);animation:drift 9s ease-in-out infinite}
-      .glow2{top:28px;right:42px;width:180px;height:180px;background:radial-gradient(circle,rgba(181,91,66,.18),transparent 70%);animation:drift 11s ease-in-out infinite reverse}
-      .orbit{position:absolute;border:1px solid rgba(255,247,239,.08);border-radius:999px}
-      .orbit.a{inset:64px 84px auto 72px;height:180px}
-      .orbit.b{inset:auto 40px 102px 164px;height:150px}
-      .corecard,.agentcard,.formtrack,.metrics{position:absolute;z-index:1}
-      .corecard,.agentcard,.formtrack span,.metrics article{border:1px solid var(--panel-line);border-radius:22px;background:rgba(255,247,239,.05);backdrop-filter:blur(10px)}
-      .corecard{top:52px;right:44px;width:220px;padding:18px}
-      .corecard h3{font-size:32px;color:#fff5e8;line-height:.96}
-      .corecard p{margin:10px 0 0;color:rgba(255,244,232,.74);font-size:14px;line-height:1.6}
-      .agentcard{left:44px;width:240px;padding:18px;animation:floaty 8s ease-in-out infinite}
-      .agentcard.two{top:214px;left:96px;animation-delay:-2.2s}
-      .agentcard.three{top:376px;left:52px;animation-delay:-4.1s}
-      .agentcard.one{top:82px}
-      .kind{display:inline-flex;margin-bottom:8px;color:rgba(255,244,232,.62);font-size:10px}
-      .agentcard h4{font-size:28px;color:#fff5e8}
-      .agentcard p{margin:8px 0 0;color:rgba(255,244,232,.76);font-size:14px;line-height:1.6}
-      .metrics{right:42px;bottom:110px;display:grid;gap:10px;width:240px}
-      .metrics article{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 14px}
-      .metrics span{color:rgba(255,244,232,.66);font-size:12px}
-      .metrics strong{font-size:16px;color:#fff5e8}
-      .formtrack{left:44px;right:44px;bottom:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-      .formtrack span{display:grid;place-items:center;padding:12px 10px;color:rgba(255,244,232,.88);font-size:12px}
+      .visual .mini,.visual p{color:rgba(255,244,232,.72)}
+      .stage{display:grid;gap:12px;margin-top:18px}
+      .stage .block,.specchip,.visualrail span{border:1px solid var(--panel-line);border-radius:22px;background:rgba(255,247,239,.05)}
+      .stage .block{padding:18px}
+      .stage strong,.specchip strong{display:block;color:#fff5e8;font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",serif;font-size:24px}
+      .stage span,.specchip span,.visualrail span{display:block;margin-top:6px;color:rgba(255,244,232,.66);font-size:13px;line-height:1.55}
+      .specchips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+      .specchip{padding:12px 14px}
+      .specchip strong{font-size:16px}
+      .visualrail{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+      .visualrail span{margin-top:0;padding:12px 14px}
       .section{padding:26px 26px 0}
       .head{display:grid;gap:10px;margin-bottom:22px}
-      .label{color:#7b2d1a;font-size:12px;text-transform:uppercase;letter-spacing:.12em}
+      .label{color:#7b2d1a;font-size:12px}
       .bodycopy{max-width:66ch;font-size:17px}
       .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-      .card,.copy,.panel,.specpanel{padding:22px}
+      .card,.panel,.specpanel,.proofcopy,.runtime{padding:22px}
       .num{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;margin-bottom:14px;border-radius:999px;background:rgba(181,91,66,.12);color:#7b2d1a;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-      .card h3,.panel h3,.runtime h3,.specpanel h3{margin-bottom:10px}
+      .card h3,.panel h3,.specpanel h3,.proofcopy h3,.runtime h3{margin-bottom:10px}
       .specwrap{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:18px}
       .specpanel{background:radial-gradient(circle at top right,rgba(216,173,112,.12),transparent 28%),var(--paper-strong)}
       .speclist{display:grid;gap:12px}
       .specrow{display:grid;grid-template-columns:128px 1fr;gap:14px;align-items:start;padding:14px 0;border-top:1px solid rgba(20,16,12,.08)}
       .specrow:first-child{padding-top:0;border-top:0}
       .specrow span{color:#7b2d1a;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-      .specrow strong{display:block;margin-bottom:4px;font-size:18px}
-      .familycard{position:relative;overflow:hidden}
-      .familycard:after{content:"";position:absolute;inset:auto -24px -24px auto;width:92px;height:92px;border-radius:999px;opacity:.14;background:linear-gradient(135deg,var(--warm),var(--gold))}
-      .micro{display:grid;gap:10px;margin:18px 0 0;padding:0;list-style:none}
-      .micro li{display:flex;justify-content:space-between;gap:12px;padding-top:10px;border-top:1px solid rgba(20,16,12,.08)}
-      .micro span{color:var(--muted);font-size:13px}
-      .micro strong{font-size:16px}
+      .familymeta{display:grid;gap:10px;margin:18px 0 0;padding:0;list-style:none}
+      .familymeta li{display:flex;justify-content:space-between;gap:12px;padding-top:10px;border-top:1px solid rgba(20,16,12,.08)}
+      .familymeta span{color:var(--muted);font-size:13px}
+      .familymeta strong{font-size:16px}
       .forms,.proofgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
       .still{background:radial-gradient(circle at top right,rgba(216,173,112,.14),transparent 28%),var(--paper-strong)}
       .moving{background:radial-gradient(circle at top right,rgba(93,101,65,.14),transparent 28%),var(--paper-strong)}
       .list{display:grid;gap:14px;margin:18px 0 0;padding:0;list-style:none}
       .list li{padding-top:12px;border-top:1px solid rgba(20,16,12,.08)}
       .list strong{display:block;margin-bottom:6px;font-size:17px}
-      .runtime{padding:24px;border-radius:var(--r2);color:var(--cream);background:
+      .runtime{color:var(--cream);border-color:rgba(255,247,239,.12);background:
         radial-gradient(circle at top right,rgba(216,173,112,.16),transparent 24%),
-        linear-gradient(180deg,rgba(18,14,11,.98),rgba(27,20,16,.94));border:1px solid rgba(255,247,239,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 28px 56px rgba(20,16,12,.18)}
-      .runtime p{color:rgba(249,239,225,.78)}
+        linear-gradient(180deg,rgba(18,14,11,.98),rgba(27,20,16,.94));box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 28px 56px rgba(20,16,12,.18)}
+      .runtime p{color:rgba(249,239,225,.78);line-height:1.7}
       .rows{display:grid;gap:12px;margin-top:18px}
       .r{display:grid;grid-template-columns:92px 1fr auto;gap:12px;align-items:center;padding:14px;border-radius:16px;background:rgba(255,247,239,.05);border:1px solid rgba(255,247,239,.08)}
       .r strong{font-size:13px}
       .r span{color:rgba(249,239,225,.72);font-size:13px}
       .r em{color:var(--gold);font-style:normal;font-size:12px}
-      .proofcopy{padding:22px;border-radius:var(--r2);border:1px solid rgba(255,255,255,.58);background:var(--paper-strong);box-shadow:0 10px 26px rgba(20,16,12,.05)}
+      .proofcopy{background:radial-gradient(circle at top right,rgba(216,173,112,.12),transparent 28%),var(--paper-strong)}
       .proofcopy p{margin:0 0 14px}
       .cta{margin:24px 26px 0;padding:24px;color:var(--cream);background:radial-gradient(circle at left top,rgba(216,173,112,.24),transparent 30%),linear-gradient(135deg,rgba(181,91,66,.97),rgba(93,101,65,.93))}
       .cta p{max-width:60ch;color:rgba(255,247,239,.86)}
@@ -143,38 +119,10 @@
       .cta .btn.secondary{color:var(--cream);border-color:rgba(255,247,239,.26);background:rgba(255,247,239,.08)}
       .cta .row{margin-top:18px}
       @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-      @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-      @keyframes drift{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(10px,-8px,0)}}
-      @media (prefers-reduced-motion: reduce){
-        *,*:before,*:after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
-      }
-      @media (max-width:1180px){
-        .hero,.specwrap,.forms,.proofgrid{grid-template-columns:1fr}
-        .grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
-        .visualstage{min-height:520px}
-      }
-      @media (max-width:880px){
-        .topbar,.footer{flex-direction:column;align-items:flex-start}
-        .navwrap{width:100%;flex-direction:column;align-items:flex-start}
-        .grid3,.pillars{grid-template-columns:1fr}
-        .visualstage{min-height:640px}
-        .metrics{left:44px;right:44px;bottom:92px;width:auto}
-        .corecard{left:auto}
-      }
-      @media (max-width:640px){
-        .page{width:min(100% - 16px,1280px);padding-top:10px}
-        .topbar,.hero,.section,.footer,.cta{padding-left:16px;padding-right:16px}
-        .cta{margin-left:16px;margin-right:16px}
-        h1{font-size:clamp(44px,15vw,66px)}
-        .visualstage{min-height:680px}
-        .agentcard,.corecard{left:18px !important;right:18px !important;width:auto}
-        .agentcard.one{top:76px}
-        .agentcard.two{top:236px}
-        .agentcard.three{top:396px}
-        .metrics{left:18px;right:18px;bottom:96px}
-        .formtrack{left:18px;right:18px;bottom:18px}
-        .r,.specrow,.micro li{grid-template-columns:1fr}
-      }
+      @media (prefers-reduced-motion: reduce){*,*:before,*:after{animation:none !important;transition:none !important;scroll-behavior:auto !important}}
+      @media (max-width:1100px){.hero,.specwrap,.forms,.proofgrid{grid-template-columns:1fr}.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+      @media (max-width:840px){.topbar,.footer{flex-direction:column;align-items:flex-start}.navwrap{width:100%;flex-direction:column;align-items:flex-start}.grid3,.pillars,.specchips,.visualrail{grid-template-columns:1fr}.familymeta li,.r{grid-template-columns:1fr}}
+      @media (max-width:640px){.page{width:min(100% - 16px,1280px);padding-top:10px}.topbar,.hero,.section,.footer,.cta{padding-left:16px;padding-right:16px}.cta{margin-left:16px;margin-right:16px}h1{font-size:clamp(44px,15vw,64px)}.specrow{grid-template-columns:1fr}}
     </style>
   </head>
   <body>
@@ -214,10 +162,10 @@
               <p class="lead">Defined by memory, intelligence, initiative, and form. Software is the first surface in a family designed to extend into still and moving products.</p>
               <div class="row">
                 <a class="btn primary" href="mailto:gokhan@ojaq.com?subject=Ojaq%20access">Request access</a>
-                <a class="btn secondary" href="#doctrine">Read the doctrine</a>
+                <a class="btn secondary" href="#proof">What exists today</a>
               </div>
               <p class="leadnote">Not a generic assistant. Not a dashboard business. A product company for agents with clear identity, legible specifications, and minimal forms.</p>
-              <ul class="pillars" aria-label="Core product pillars">
+              <ul class="pillars" aria-label="Core pillars">
                 <li><span class="mini">Memory</span><strong>Continuity over time</strong></li>
                 <li><span class="mini">Intelligence</span><strong>Judgment in the moment</strong></li>
                 <li><span class="mini">Initiative</span><strong>A defined social stance</strong></li>
@@ -225,52 +173,23 @@
               </ul>
             </div>
 
-            <aside class="visual" aria-label="Ojaq product family concept">
-              <div class="visualhead">
-                <span class="mini">Ojaq family system</span>
-                <span>Identity first. Forms next.</span>
-              </div>
-              <div class="visualstage">
-                <div class="glow"></div>
-                <div class="glow2"></div>
-                <div class="orbit a"></div>
-                <div class="orbit b"></div>
-
-                <article class="agentcard one">
-                  <span class="kind">Conversational</span>
-                  <h4>Guide</h4>
-                  <p>Composed, articulate, and built for explanation, hosting, and translation.</p>
-                </article>
-
-                <article class="agentcard two">
-                  <span class="kind">Operational</span>
-                  <h4>Signal</h4>
-                  <p>Fast, concise, and designed for timing, action, and clarity under pressure.</p>
-                </article>
-
-                <article class="agentcard three">
-                  <span class="kind">Continuity</span>
-                  <h4>Companion</h4>
-                  <p>Persistent, memory-first, and designed to carry identity across time.</p>
-                </article>
-
-                <article class="corecard">
-                  <span class="mini">Agent core</span>
-                  <h3>One product language.</h3>
-                  <p>The same core can be tuned into distinct agents, then extended into still and moving forms without losing identity.</p>
-                </article>
-
-                <div class="metrics" aria-label="Core metrics">
-                  <article><span>Memory</span><strong>Continuity</strong></article>
-                  <article><span>Intelligence</span><strong>Judgment</strong></article>
-                  <article><span>Initiative</span><strong>Stance</strong></article>
-                  <article><span>Form</span><strong>Surface path</strong></article>
+            <aside class="visual" aria-label="Ojaq system">
+              <span class="mini">Ojaq family system</span>
+              <div class="stage">
+                <div class="block">
+                  <strong>One product language.</strong>
+                  <p>The same core can become distinct agents, then extend into still and moving forms without losing identity.</p>
                 </div>
-
-                <div class="formtrack" aria-label="Form path">
-                  <span>Software</span>
-                  <span>Still</span>
-                  <span>Moving</span>
+                <div class="visualrail" aria-label="Agent family">
+                  <span>Guide</span>
+                  <span>Signal</span>
+                  <span>Companion</span>
+                </div>
+                <div class="specchips" aria-label="System traits">
+                  <div class="specchip"><strong>Memory</strong><span>Continuity</span></div>
+                  <div class="specchip"><strong>Intelligence</strong><span>Judgment</span></div>
+                  <div class="specchip"><strong>Initiative</strong><span>Stance</span></div>
+                  <div class="specchip"><strong>Form</strong><span>Surface path</span></div>
                 </div>
               </div>
             </aside>
@@ -349,34 +268,31 @@
               <p class="bodycopy">Different Ojaq agents can share one product language while being tuned for different social roles and operating styles.</p>
             </div>
             <div class="grid3">
-              <article class="card familycard">
-                <span class="kind">Conversational</span>
+              <article class="card">
+                <span class="mini">Conversational</span>
                 <h3>Guide</h3>
                 <p>Built for explanation, translation, and elegant presence.</p>
-                <ul class="micro">
+                <ul class="familymeta">
                   <li><span>Memory</span><strong>Medium</strong></li>
                   <li><span>Initiative</span><strong>Measured</strong></li>
-                  <li><span>First form</span><strong>Still</strong></li>
                 </ul>
               </article>
-              <article class="card familycard">
-                <span class="kind">Operational</span>
+              <article class="card">
+                <span class="mini">Operational</span>
                 <h3>Signal</h3>
                 <p>Built for timing, action, and clarity under pressure.</p>
-                <ul class="micro">
+                <ul class="familymeta">
                   <li><span>Memory</span><strong>Focused</strong></li>
                   <li><span>Initiative</span><strong>High</strong></li>
-                  <li><span>First form</span><strong>Moving</strong></li>
                 </ul>
               </article>
-              <article class="card familycard">
-                <span class="kind">Continuity</span>
+              <article class="card">
+                <span class="mini">Continuity</span>
                 <h3>Companion</h3>
                 <p>Built to carry identity, memory, and context across time.</p>
-                <ul class="micro">
+                <ul class="familymeta">
                   <li><span>Memory</span><strong>High</strong></li>
                   <li><span>Initiative</span><strong>Low-noise</strong></li>
-                  <li><span>First form</span><strong>Software</strong></li>
                 </ul>
               </article>
             </div>
@@ -396,7 +312,6 @@
                 <ul class="list">
                   <li><strong>Room Presence</strong>Shared spaces where the agent becomes a calm layer of presence and coordination.</li>
                   <li><strong>Desk Presence</strong>Focused environments where the agent remains available without taking over the workspace.</li>
-                  <li><strong>Ambient Presence</strong>Subtle interaction where the product fades into the background until needed.</li>
                 </ul>
               </article>
               <article class="panel moving">
@@ -406,7 +321,6 @@
                 <ul class="list">
                   <li><strong>Personal Companion</strong>Movement across the day with continuity, context, and coordination.</li>
                   <li><strong>Field Mobility</strong>Operational settings where the agent moves with the work instead of waiting at a desk.</li>
-                  <li><strong>Physical Autonomy</strong>Future products that navigate space while staying minimal, legible, and useful.</li>
                 </ul>
               </article>
             </div>
@@ -420,7 +334,7 @@
             </div>
             <div class="proofgrid">
               <article class="runtime">
-                <h3>Live runtime</h3>
+                <h3>What exists today</h3>
                 <p>Software comes first because it is the fastest way to refine memory, judgment, voice, and initiative before those same agents extend into still and moving products.</p>
                 <div class="rows">
                   <div class="r"><strong>Perception</strong><span>Live context intake and interpretation</span><em>live</em></div>
@@ -430,9 +344,9 @@
                 </div>
               </article>
               <article class="proofcopy">
-                <h3>First surface, not final identity.</h3>
-                <p>Ojaq does not begin as a dashboard company. It begins with a real agent product and a clear product language.</p>
-                <p>That language starts in software, then extends into still and moving forms without losing the identity of the agent itself.</p>
+                <h3>What comes next</h3>
+                <p>Still and moving forms inherit the same product language. The identity of the agent remains consistent as the surface evolves.</p>
+                <p>The homepage should stay careful about the future, but clear about the direction: one family, clearer products, more surfaces over time.</p>
                 <div class="row">
                   <a class="btn primary" href="mailto:gokhan@ojaq.com?subject=Ojaq%20access">Request access</a>
                   <a class="btn secondary" href="#specs">Review the specs</a>
@@ -446,7 +360,7 @@
             <p>Ojaq is building agent products that begin in software and extend into the world through minimal, legible forms.</p>
             <div class="row">
               <a class="btn primary" href="mailto:gokhan@ojaq.com?subject=Ojaq%20access">Request access</a>
-              <a class="btn secondary" href="#family">See the family</a>
+              <a class="btn secondary" href="mailto:gokhan@ojaq.com?subject=Talk%20to%20the%20founders">Talk to the founders</a>
             </div>
           </section>
         </main>
